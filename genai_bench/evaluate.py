@@ -23,7 +23,7 @@ def config():
     parser.add_argument("--model", default="clip-flant5-xxl", type=str)
     parser.add_argument("--question", default=None, type=str)
     parser.add_argument("--answer", default=None, type=str)
-    parser.add_argument("--result_dir", default="./genai_bench_results", type=str)
+    parser.add_argument("--result_dir", default="./evaluation/T2I_Eval/genai_bench_results", type=str)
     parser.add_argument("--openai_key", default=None, type=str)
     parser.add_argument("--openai_key_path", default='./_OPENAI_API_KEY.txt', type=str)
     parser.add_argument("--top_logprobs", type=int, default=20)
