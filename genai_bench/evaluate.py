@@ -13,7 +13,7 @@ def config():
     parser = argparse.ArgumentParser()
     parser.add_argument("--root_dir", default="./genai_datasets", type=str,
                         help='Root directory for saving datasets.')
-    parser.add_argument("--output_dir", default="./outputs", type=str,
+    parser.add_argument("--output_dir", default="./evaluation/T2I_Eval/genai_results", type=str,
                         help="Directory where you have saved your model's output.")
     parser.add_argument("--gen_model", default="no_gen_model", type=str)
     parser.add_argument("--cache_dir", default=t2v_metrics.constants.HF_CACHE_DIR, type=str) 
