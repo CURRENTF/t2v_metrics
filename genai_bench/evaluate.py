@@ -100,7 +100,7 @@ def main():
     model_output = []
     for prompt_idx in dataset.dataset.keys():
         prompt = dataset.dataset[prompt_idx]['prompt']
-        image_path = os.path.join(args.output_dir, args.gen_model, f"{prompt_idx}.png")
+        image_path = os.path.join(args.output_dir, args.gen_model, f"{int(prompt_idx)}.png")  # 去掉前导0
         assert os.path.exists(image_path), f"Image {image_path} does not exist. Please run python genai_bench/generate.py to generate images."
         model_output.append({
             'images': [image_path],
