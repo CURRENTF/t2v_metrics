@@ -41,7 +41,8 @@ def show_performance_per_skill(our_scores, dataset, gen_model='runwayml/stable-d
     tag_result = {}
     tag_file = f"{dataset.root_dir}/genai_skills.json"
     tags = json.load(open(tag_file))
-    prompt_to_items = {prompt_idx: [int(prompt_idx)] for prompt_idx in dataset.dataset.keys()}
+    index_reduce_1 = (our_scores.shape[-1] == 527)
+    prompt_to_items = {prompt_idx: [int(prompt_idx) - index_reduce_1] for prompt_idx in dataset.dataset.keys()}
     items_by_model_tag = {}
     for tag in tags:
         items_by_model_tag[tag] = {}
@@ -138,6 +139,7 @@ def main():
         scores = torch.load(result_path)
     else:
         print(f"Scoring {args.model}.")
+        # 此时大小为527，也是对的
         scores = score_func.batch_forward(model_output, batch_size=args.batch_size, **kwargs).cpu()
         torch.save(scores, result_path)
         
