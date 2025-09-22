@@ -42,6 +42,7 @@ def show_performance_per_skill(our_scores, dataset, gen_model='runwayml/stable-d
     tag_file = f"{dataset.root_dir}/genai_skills.json"
     tags = json.load(open(tag_file))
     index_reduce_1 = (our_scores.shape[-1] == 527)
+    print(our_scores.shape)
     assert index_reduce_1 > 0, f"{index_reduce_1}"
     prompt_to_items = {prompt_idx: [int(prompt_idx) - index_reduce_1] for prompt_idx in dataset.dataset.keys()}
     items_by_model_tag = {}
