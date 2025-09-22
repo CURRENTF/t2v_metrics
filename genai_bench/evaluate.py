@@ -11,11 +11,11 @@ import torch
 
 def config():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--root_dir", default="./datasets", type=str,
+    parser.add_argument("--root_dir", default="./genai_datasets", type=str,
                         help='Root directory for saving datasets.')
     parser.add_argument("--output_dir", default="./outputs", type=str,
                         help="Directory where you have saved your model's output.")
-    parser.add_argument("--gen_model", default="runwayml/stable-diffusion-v1-5", type=str)
+    parser.add_argument("--gen_model", default="no_gen_model", type=str)
     parser.add_argument("--cache_dir", default=t2v_metrics.constants.HF_CACHE_DIR, type=str) 
     parser.add_argument("--device", default="cuda", type=str)
     parser.add_argument("--batch_size", default=16, type=int)
@@ -100,7 +100,7 @@ def main():
     model_output = []
     for prompt_idx in dataset.dataset.keys():
         prompt = dataset.dataset[prompt_idx]['prompt']
-        image_path = os.path.join(args.output_dir, args.gen_model, f"{prompt_idx}.jpeg")
+        image_path = os.path.join(args.output_dir, args.gen_model, f"{prompt_idx}.png")
         assert os.path.exists(image_path), f"Image {image_path} does not exist. Please run python genai_bench/generate.py to generate images."
         model_output.append({
             'images': [image_path],
